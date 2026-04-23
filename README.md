@@ -31,12 +31,12 @@
 
 ```python
 profile = {
-    "name":       "[YOUR_NAME]",
-    "location":   "[YOUR_CITY], [YOUR_COUNTRY]",
+    "name":       "Eddy Liang",
+    "location":   "Toronto, Canada",
     "focus":      ["ML Research", "Data Engineering", "LLM Fine-tuning"],
     "currently":  "Training models and breaking things (productively)",
     "looking_for": "Open-source collabs & interesting problems",
-    "contact":    "[YOUR_EMAIL_OR_LINKEDIN]",
+    "contact":    "https://www.linkedin.com/in/eddy-liang-09893030b/",
 }
 ```
 
@@ -73,16 +73,16 @@ profile = {
 <div align="center">
 
 <!-- Stats card -->
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=[YOUR_USERNAME]&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" />
+<img height="160" src="https://github-readme-stats.vercel.app/api?username=MonsterV82152&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" />
 
 <!-- Top languages card -->
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=[YOUR_USERNAME]&layout=compact&theme=github_dark&hide_border=true&langs_count=6" />
+<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=MonsterV82152&layout=compact&theme=github_dark&hide_border=true&langs_count=6" />
 
 </div>
 
 <!-- Streak card -->
 <div align="center">
-  <img src="https://streak-stats.demolab.com?user=[YOUR_USERNAME]&theme=github-dark&hide_border=true" />
+  <img src="https://streak-stats.demolab.com?user=MonsterV82152&theme=github-dark&hide_border=true" />
 </div>
 
 ---
