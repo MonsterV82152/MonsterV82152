@@ -25,13 +25,13 @@
 
 ```
   ╔════════════════════════════════════╗
-  ║  grade  ──  10                    ║
-  ║  school ──  Crescent School       ║
-  ║  loc    ──  Toronto, Canada       ║
+  ║  grade  ──  10                     ║
+  ║  school ──  Crescent School        ║
+  ║  loc    ──  Toronto, Canada        ║
   ╠════════════════════════════════════╣
-  ║  » QML Researcher @ Synthica      ║
-  ║  » FRC 610  ·  V5RC 16610V        ║
-  ║  » NN Developer                   ║
+  ║  » QML Researcher @ Synthica       ║
+  ║  » FRC 610  ·  V5RC 16610V         ║
+  ║  » NN Developer                    ║
   ╚════════════════════════════════════╝
 ```
 
