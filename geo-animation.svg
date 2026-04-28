@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180" width="520" height="180">
+
+  <!-- Background -->
+  <rect width="520" height="180" fill="#0d1117" rx="8"/>
+
+  <!-- ═══ GEOMETRIC OBJECT ═══ -->
+  <g transform="translate(90,90)">
+
+    <!-- Subtle outer pulse ring -->
+    <circle r="74" fill="none" stroke="#1f6feb" stroke-width="0.5" opacity="0.12">
+      <animate attributeName="r" values="70;76;70" dur="3.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.08;0.2;0.08" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Outer square, starts 45deg (diamond), rotates slowly -->
+    <rect x="-65" y="-65" width="130" height="130" rx="3"
+          fill="none" stroke="#1f6feb" stroke-width="1" opacity="0.5">
+      <animateTransform attributeName="transform" type="rotate"
+                        from="45" to="405" dur="16s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Dashed orbit ring, counter-clockwise -->
+    <circle r="52" fill="none" stroke="#388bfd" stroke-width="0.8"
+            stroke-dasharray="5 9" opacity="0.4">
+      <animateTransform attributeName="transform" type="rotate"
+                        from="0" to="-360" dur="10s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Inner diamond, clockwise -->
+    <polygon points="0,-38 38,0 0,38 -38,0"
+             fill="none" stroke="#58a6ff" stroke-width="1.5" opacity="0.85">
+      <animateTransform attributeName="transform" type="rotate"
+                        from="0" to="360" dur="7s" repeatCount="indefinite"/>
+    </polygon>
+
+    <!-- Orbiting dot 1 -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate"
+                        from="0" to="360" dur="5s" repeatCount="indefinite"/>
+      <circle cx="38" cy="0" r="3.5" fill="#79c0ff" opacity="0.95"/>
+    </g>
+
+    <!-- Orbiting dot 2 (180deg offset) -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate"
+                        from="180" to="540" dur="5s" repeatCount="indefinite"/>
+      <circle cx="38" cy="0" r="3.5" fill="#79c0ff" opacity="0.95"/>
+    </g>
+
+    <!-- Rotating cross arms -->
+    <g opacity="0.3">
+      <animateTransform attributeName="transform" type="rotate"
+                        from="0" to="-360" dur="4s" repeatCount="indefinite"/>
+      <line x1="-20" y1="0" x2="20" y2="0" stroke="#58a6ff" stroke-width="1"/>
+      <line x1="0" y1="-20" x2="0" y2="20" stroke="#58a6ff" stroke-width="1"/>
+    </g>
+
+    <!-- Pulsing center glow -->
+    <circle cx="0" cy="0" r="5" fill="#388bfd" opacity="0.3">
+      <animate attributeName="r" values="4;10;4" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.15;0.35;0.15" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Solid center dot -->
+    <circle cx="0" cy="0" r="3.5" fill="#388bfd">
+      <animate attributeName="r" values="2.5;4.5;2.5" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="1.5" fill="#a8d8ff" opacity="0.9"/>
+
+  </g>
+
+  <!-- ═══ VERTICAL DIVIDER ═══ -->
+  <line x1="178" y1="18" x2="178" y2="162" stroke="#21262d" stroke-width="1"/>
+
+  <!-- ═══ TEXT CONTENT ═══ -->
+
+  <!-- Name -->
+  <text x="198" y="50"
+        fill="#e6edf3" font-family="Courier New, monospace"
+        font-size="21" font-weight="bold" letter-spacing="3">EDDY LIANG</text>
+
+  <!-- Role line -->
+  <text x="198" y="72"
+        fill="#58a6ff" font-family="Courier New, monospace" font-size="11">
+    &lt; Associate Researcher @ Synthica — QML &gt;
+  </text>
+
+  <!-- Teams -->
+  <text x="198" y="93"
+        fill="#8b949e" font-family="Courier New, monospace" font-size="10.5">
+    FRC Team 610  ·  V5RC 16610V  ·  NN Dev
+  </text>
+
+  <!-- Stack preview -->
+  <text x="198" y="113"
+        fill="#8b949e" font-family="Courier New, monospace" font-size="10.5">
+    C++  ·  Python  ·  Rust  ·  Java  ·  TypeScript
+  </text>
+
+  <!-- Dot separator -->
+  <text x="198" y="132"
+        fill="#21262d" font-family="Courier New, monospace" font-size="9" letter-spacing="7">
+    · · · · · · · · · · · · · · · · · · ·
+  </text>
+
+  <!-- Location / handle -->
+  <text x="198" y="152"
+        fill="#6e7681" font-family="Courier New, monospace" font-size="10">
+    Toronto, Canada  ·  github.com/MonsterV82152
+  </text>
+
+  <!-- ═══ ANIMATED SCAN LINE ═══ -->
+  <rect x="179" y="18" width="322" height="1.5" fill="#1f6feb" rx="0.75">
+    <animate attributeName="y" values="18;162;18" dur="6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;0.5;0.5;0;0"
+             keyTimes="0;0.08;0.92;0.96;1" dur="6s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- ═══ BOTTOM ACCENT BAR ═══ -->
+  <rect x="0" y="175" width="0" height="3" fill="#1f6feb" rx="1.5">
+    <animate attributeName="width" values="0;520;520;0"
+             keyTimes="0;0.4;0.6;1" dur="8s" repeatCount="indefinite"/>
+  </rect>
+
+</svg>
