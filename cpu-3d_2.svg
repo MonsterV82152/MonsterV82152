@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 310" width="500" height="310" onload="init(evt)">
+  <defs>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d14"/>
+      <stop offset="100%" stop-color="#111824"/>
+    </linearGradient>
+    <linearGradient id="edge-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#7ee787" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="500" height="310" rx="16" fill="url(#bg-grad)"/>
+
+  <g id="scene" transform="translate(250,155)">
+    <circle cx="0" cy="0" r="105" fill="none" stroke="#1f6feb" stroke-width="0.8" opacity="0.16"/>
+    <circle cx="0" cy="0" r="78" fill="none" stroke="#1f6feb" stroke-width="0.6" opacity="0.12"/>
+    <g id="cube-lines">
+      <line id="edge0" x1="-57.97" y1="22.26" x2="15.44" y2="12.46" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.96"/>
+      <line id="edge1" x1="15.44" y1="12.46" x2="21.82" y2="-59.18" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.96"/>
+      <line id="edge2" x1="21.82" y1="-59.18" x2="-45.75" y2="-44.50" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.96"/>
+      <line id="edge3" x1="-45.75" y1="-44.50" x2="-57.97" y2="22.26" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.96"/>
+      <line id="edge4" x1="-19.03" y1="51.63" x2="46.94" y2="45.66" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.96"/>
+      <line id="edge5" x1="46.94" y1="45.66" x2="49.91" y2="-19.16" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.92"/>
+      <line id="edge6" x1="49.91" y1="-19.16" x2="-11.28" y2="-9.10" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.92"/>
+      <line id="edge7" x1="-11.28" y1="-9.10" x2="-19.03" y2="51.63" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.92"/>
+      <line id="edge8" x1="-57.97" y1="22.26" x2="-19.03" y2="51.63" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+      <line id="edge9" x1="15.44" y1="12.46" x2="46.94" y2="45.66" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+      <line id="edge10" x1="21.82" y1="-59.18" x2="49.91" y2="-19.16" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+      <line id="edge11" x1="-45.75" y1="-44.50" x2="-11.28" y2="-9.10" stroke="url(#edge-glow)" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+    </g>
+    <g id="vertex-glow" filter="url(#glow)">
+      <circle id="v0" cx="-57.97" cy="22.26" r="4" fill="#58a6ff" opacity="0.62"/>
+      <circle id="v1" cx="15.44" cy="12.46" r="4" fill="#58a6ff" opacity="0.62"/>
+      <circle id="v2" cx="21.82" cy="-59.18" r="4" fill="#58a6ff" opacity="0.62"/>
+      <circle id="v3" cx="-45.75" cy="-44.50" r="4" fill="#58a6ff" opacity="0.62"/>
+      <circle id="v4" cx="-19.03" cy="51.63" r="4" fill="#58a6ff" opacity="0.62"/>
+      <circle id="v5" cx="46.94" cy="45.66" r="4" fill="#58a6ff" opacity="0.62"/>
+      <circle id="v6" cx="49.91" cy="-19.16" r="4" fill="#58a6ff" opacity="0.62"/>
+      <circle id="v7" cx="-11.28" cy="-9.10" r="4" fill="#58a6ff" opacity="0.62"/>
+    </g>
+  </g>
+
+  <g transform="translate(250,268)">
+    <text x="0" y="0" text-anchor="middle" fill="#6e7681" font-family="Courier New, monospace" font-size="10">Rotating 3D cube rendered with perspective line math</text>
+  </g>
+
+  <script type="application/javascript"><![CDATA[
+    const verts = [
+      [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+      [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]
+    ];
+
+    const edges = [
+      [0,1],[1,2],[2,3],[3,0],
+      [4,5],[5,6],[6,7],[7,4],
+      [0,4],[1,5],[2,6],[3,7]
+    ];
+
+    const cx = 0;
+    const cy = 0;
+    const size = 70;
+    const focal = 230;
+    const cameraZ = 5;
+    let angleX = 0.55;
+    let angleY = 0.45;
+    let angleZ = 0.15;
+
+    function rotatePoint([x,y,z], ax, ay, az) {
+      const cosX = Math.cos(ax), sinX = Math.sin(ax);
+      const cosY = Math.cos(ay), sinY = Math.sin(ay);
+      const cosZ = Math.cos(az), sinZ = Math.sin(az);
+
+      let y1 = y * cosX - z * sinX;
+      let z1 = y * sinX + z * cosX;
+      let x1 = x;
+
+      let z2 = z1 * cosY - x1 * sinY;
+      let x2 = z1 * sinY + x1 * cosY;
+      let y2 = y1;
+
+      let x3 = x2 * cosZ - y2 * sinZ;
+      let y3 = x2 * sinZ + y2 * cosZ;
+      let z3 = z2;
+
+      return [x3, y3, z3];
+    }
+
+    function project([x,y,z]) {
+      const depth = cameraZ + z;
+      const scale = focal / (focal + depth * 40);
+      return [cx + x * size * scale, cy - y * size * scale, depth];
+    }
+
+    function init() {
+      const lineEls = edges.map((_, i) => document.getElementById('edge' + i));
+      const vertexEls = Array.from({length: 8}, (_, i) => document.getElementById('v' + i));
+
+      if (lineEls.some(el => !el) || vertexEls.some(el => !el)) {
+        return;
+      }
+
+      function render() {
+        angleX += 0.005;
+        angleY += 0.007;
+        angleZ += 0.004;
+
+        const rotated = verts.map(v => rotatePoint(v, angleX, angleY, angleZ));
+        const projected = rotated.map(project);
+
+        edges.forEach(([a,b], index) => {
+          const [x1,y1] = projected[a];
+          const [x2,y2] = projected[b];
+          const line = lineEls[index];
+          line.setAttribute('x1', x1);
+          line.setAttribute('y1', y1);
+          line.setAttribute('x2', x2);
+          line.setAttribute('y2', y2);
+        });
+
+        projected.forEach(([x,y], index) => {
+          const circle = vertexEls[index];
+          circle.setAttribute('cx', x);
+          circle.setAttribute('cy', y);
+        });
+
+        requestAnimationFrame(render);
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    if (document.readyState === 'complete') {
+      init();
+    } else {
+      document.addEventListener('DOMContentLoaded', init);
+      window.addEventListener('load', init);
+    }
+  ]]></script>
+</svg>
