@@ -1,57 +1,17 @@
-<!-- ═══════════════════════════════════════════════ -->
-<!--   ANIMATED WAVE HEADER                        -->
-<!-- ═══════════════════════════════════════════════ -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,40:0a1628,100:1f6feb&height=200&section=header&text=Eddy%20Liang&fontSize=52&fontColor=e6edf3&animation=fadeIn&fontAlignY=38&desc=MonsterV82152%20%C2%B7%20Toronto%2C%20Canada&descAlignY=56&descSize=15&descColor=79c0ff" width="100%" alt="header"/>
+<!-- ════════════════════════════════════════════════════ -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:0a1628,100:1f6feb&height=180&section=header&text=Eddy%20Liang&fontSize=46&fontColor=e6edf3&animation=fadeIn&fontAlignY=40&desc=MonsterV82152%20%E2%80%94%20Toronto%2C%20Canada&descAlignY=58&descSize=14&descColor=79c0ff" width="100%" alt="header"/>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!--   TYPING ANIMATION                            -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- Typing: shows role context only — body text won't repeat these -->
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=16&duration=2800&pause=1000&color=58A6FF&center=true&vCenter=true&width=500&height=40&lines=Student+%7C+Researcher+%7C+Builder;QML+Researcher+%40+Synthica;FRC+610+Robot+Technician;V5RC+16610V+Lead+Programmer;USACO+Silver+%7C+CCC+%7C+ACSL" alt="Typing SVG"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=15&duration=2600&pause=900&color=58A6FF&center=true&vCenter=true&width=480&height=36&lines=QML+%E2%80%94+Quantum+Machine+Learning+%40+Synthica;FRC+610+Robot+Technician+%282025%E2%80%932026%29;V5RC+16610V+Lead+Programmer+%282023%E2%80%932026%29;Neural+Network+Developer;USACO+Silver+%C2%B7+CCC+%C2%B7+ACSL+%7C+Gr.+10+%C2%B7+Crescent" alt="roles"/>
 </p>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!--   3D ANIMATED BANNER                          -->
-<!-- ═══════════════════════════════════════════════ -->
+<!-- 3D isometric CPU chip animation -->
 <p align="center">
-  <img src="./geo-animation.svg" width="520" alt="3D geometric animation"/>
+  <img src="./cpu-3d.svg" width="480" alt="CPU chip 3D animation"/>
 </p>
 
-<br/>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!--   IDENTITY                                    -->
-<!-- ═══════════════════════════════════════════════ -->
-
-```
-  ╔════════════════════════════════════╗
-  ║  grade  ──  10                     ║
-  ║  school ──  Crescent School        ║
-  ║  loc    ──  Toronto, Canada        ║
-  ╠════════════════════════════════════╣
-  ║  » QML Researcher @ Synthica       ║
-  ║  » FRC 610  ·  V5RC 16610V         ║
-  ║  » NN Developer                    ║
-  ╚════════════════════════════════════╝
-```
-
-**Active Roles**
-- Associate Researcher @ **Synthica** — Quantum Machine Learning (QML)
-- Robot Technician — **FRC Team 610** *(2025–2026)*
-- Lead Programmer — **V5RC 16610V** *(2023–2026)*
-- Neural Network Developer
-
-**Competitive**
-```
-  CCC   ·   USACO [ Silver ]   ·   ACSL
-```
-
-<br/>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!--   SKILL ICONS                                 -->
-<!-- ═══════════════════════════════════════════════ -->
-<h3 align="center">⟨ stack ⟩</h3>
+<p align="center"><samp>── ⟨ stack ⟩ ──</samp></p>
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=cpp,python,java,ts,js,rust,cs,dart,bash&perline=9" alt="Languages"/>
@@ -59,17 +19,12 @@
   <img src="https://skillicons.dev/icons?i=react,nodejs,git,linux,vscode&perline=9" alt="Tools"/>
 </p>
 
-<br/>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!--   GITHUB STATS                                -->
-<!-- ═══════════════════════════════════════════════ -->
-<h3 align="center">⟨ stats ⟩</h3>
+<p align="center"><samp>── ⟨ stats ⟩ ──</samp></p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=MonsterV82152&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" height="170" alt="GitHub Stats"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=MonsterV82152&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" height="165" alt="GitHub Stats"/>
   &nbsp;
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MonsterV82152&theme=github_dark&hide_border=true&layout=compact&langs_count=8" height="170" alt="Top Languages"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MonsterV82152&theme=github_dark&hide_border=true&layout=compact&langs_count=8" height="165" alt="Top Languages"/>
 </p>
 
 <p align="center">
@@ -84,12 +39,7 @@
   <img src="https://github-profile-trophy.vercel.app/?username=MonsterV82152&theme=algolia&no-frame=true&row=1&column=7" alt="Trophies"/>
 </p>
 
-<br/>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!--   PROJECTS                                    -->
-<!-- ═══════════════════════════════════════════════ -->
-<h3 align="center">⟨ projects ⟩</h3>
+<p align="center"><samp>── ⟨ projects ⟩ ──</samp></p>
 
 <table align="center">
 <tr>
@@ -119,12 +69,7 @@
 </tr>
 </table>
 
-<br/>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!--   CONTACT                                     -->
-<!-- ═══════════════════════════════════════════════ -->
-<h3 align="center">⟨ contact ⟩</h3>
+<p align="center"><samp>── ⟨ contact ⟩ ──</samp></p>
 
 <p align="center">
   <a href="https://github.com/MonsterV82152">
@@ -140,9 +85,5 @@
   <img src="https://visitor-badge.laobi.icu/badge?page_id=MonsterV82152.MonsterV82152&left_color=161b22&right_color=1f6feb&left_text=visitors" alt="Visitors"/>
 </p>
 
-<br/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f6feb,60:0a1628,100:0d1117&height=110&section=footer" width="100%" alt="footer"/>
 
-<!-- ═══════════════════════════════════════════════ -->
-<!--   ANIMATED WAVE FOOTER                        -->
-<!-- ═══════════════════════════════════════════════ -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f6feb,60:0a1628,100:0d1117&height=120&section=footer" width="100%" alt="footer"/>
