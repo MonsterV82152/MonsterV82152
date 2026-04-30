@@ -21,26 +21,6 @@
 
 <p align="center"><samp>── ⟨ stats ⟩ ──</samp></p>
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=MonsterV82152&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" height="165" alt="GitHub Stats"/>
-  &nbsp;
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MonsterV82152&theme=github_dark&hide_border=true&layout=compact&langs_count=8" height="165" alt="Top Languages"/>
-</p>
-
-<p align="center">
-  <img src="https://streak-stats.demolab.com?user=MonsterV82152&theme=github-dark-blue&hide_border=true" alt="GitHub Streak"/>
-</p>
-
-<p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=MonsterV82152&bg_color=0d1117&color=58a6ff&line=1f6feb&point=79c0ff&area=true&hide_border=true" alt="Activity Graph"/>
-</p>
-
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=MonsterV82152&theme=algolia&no-frame=true&row=1&column=7" alt="Trophies"/>
-</p>
-
-<p align="center"><samp>── ⟨ projects ⟩ ──</samp></p>
-
 <table align="center">
 <tr>
   <th align="left">Project</th>
@@ -68,6 +48,28 @@
   <td>FRC 610 prototype — kinematics &amp; advanced control</td>
 </tr>
 </table>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=MonsterV82152&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" height="165" alt="GitHub Stats"/>
+  &nbsp;
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MonsterV82152&theme=github_dark&hide_border=true&layout=compact&langs_count=8" height="165" alt="Top Languages"/>
+</p>
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=MonsterV82152&theme=github-dark-blue&hide_border=true" alt="GitHub Streak"/>
+</p>
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=MonsterV82152&bg_color=0d1117&color=58a6ff&line=1f6feb&point=79c0ff&area=true&hide_border=true" alt="Activity Graph"/>
+</p>
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=MonsterV82152&theme=algolia&no-frame=true&row=1&column=7" alt="Trophies"/>
+</p>
+
+<p align="center"><samp>── ⟨ projects ⟩ ──</samp></p>
+
+
 
 <p align="center"><samp>── ⟨ contact ⟩ ──</samp></p>
 
