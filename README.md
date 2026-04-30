@@ -29,7 +29,7 @@
 </tr>
 <tr>
   <td>NASA Space Apps 2024</td>
-  <td>—</td>
+  <td><code>Python</code> <code>Blender</code></td>
   <td>Exoplanet detection &amp; analysis — global hackathon</td>
 </tr>
 <tr>
