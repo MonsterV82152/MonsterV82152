@@ -19,7 +19,7 @@
   <img src="https://skillicons.dev/icons?i=react,nodejs,git,linux,vscode&perline=9" alt="Tools"/>
 </p>
 
-<p align="center"><samp>── ⟨ stats ⟩ ──</samp></p>
+<p align="center"><samp>── ⟨ projects ⟩ ──</samp></p>
 
 <table align="center">
 <tr>
@@ -49,6 +49,8 @@
 </tr>
 </table>
 
+<p align="center"><samp>── ⟨ stats ⟩ ──</samp></p>
+
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=MonsterV82152&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" height="165" alt="GitHub Stats"/>
   &nbsp;
@@ -66,10 +68,6 @@
 <p align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=MonsterV82152&theme=algolia&no-frame=true&row=1&column=7" alt="Trophies"/>
 </p>
-
-<p align="center"><samp>── ⟨ projects ⟩ ──</samp></p>
-
-
 
 <p align="center"><samp>── ⟨ contact ⟩ ──</samp></p>
 
