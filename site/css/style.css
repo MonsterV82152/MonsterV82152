@@ -1,0 +1,609 @@
+/* =====================================================================
+   EDDY LIANG — MonsterV82152
+   Pure static art piece. Dark / design-heavy / monospace.
+   STRICT PALETTE: only these hues are permitted anywhere.
+   ===================================================================== */
+
+:root {
+  --bg: #0b130d;          /* near-black, green-black base        */
+  --bg-elev: #0f1c14;     /* deeper green-black for layers        */
+  --accent: #5cc88a;      /* brighter, more saturated sage-green  */
+  --accent-bright: #9af0bd;/* vivid bright sage — glows/hovers     */
+  --accent-light: #d8f7e3;/* bright pale green — text highlights  */
+  --text: #f4fff5;        /* near-white, bright                   */
+  --muted: #aac6ac;       /* brighter muted sage-gray             */
+  --faint: #84a089;       /* brighter faint sage-gray             */
+  --border: #243228;      /* dark green-gray hairline             */
+
+  --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, 'SFMono-Regular',
+          'Courier New', monospace;
+
+  --maxw: 1080px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------------
+   RESET / BASE
+   --------------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  cursor: default;
+  /* subtle dark halo keeps text crisp over the low-opacity wireframe bg */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Monospace everywhere — headings too */
+h1, h2, h3 { font-family: var(--mono); font-weight: 700; margin: 0; }
+
+a {
+  color: var(--accent-light);
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  transition: background-size 0.35s var(--ease), color 0.25s var(--ease);
+}
+a:hover { color: var(--accent-bright); background-size: 100% 1px; }
+
+::selection { background: var(--accent); color: var(--bg); }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+.dim { color: var(--faint); }
+
+/* =====================================================================
+   BACKGROUND CANVAS — Three.js wireframe (fixed, behind everything)
+   ===================================================================== */
+#wireframe-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+}
+
+/* =====================================================================
+   DECORATIVE OVERLAYS — scanlines, vignette, grain
+   ===================================================================== */
+
+/* Scanlines: faint horizontal 1px lines */
+.fx-scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.16) 3px
+  );
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+
+/* Vignette: dark edges */
+.fx-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+/* CRT grain: tiny animated noise */
+.fx-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.6s steps(2) infinite;
+}
+@keyframes grain {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-2%, 1%); }
+  50%  { transform: translate(1%, -1%); }
+  75%  { transform: translate(-1%, 2%); }
+  100% { transform: translate(2%, 0); }
+}
+
+/* =====================================================================
+   CUSTOM CURSOR HALO (subtle)
+   ===================================================================== */
+#cursor-halo {
+  position: fixed;
+  top: 0; left: 0;
+  width: 26px; height: 26px;
+  margin: 0;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease),
+              width 0.25s var(--ease), height 0.25s var(--ease);
+  mix-blend-mode: screen;
+}
+#cursor-halo.on { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+#cursor-halo.big {
+  width: 54px; height: 54px;
+  border-color: var(--accent-bright);
+}
+
+/* =====================================================================
+   SCROLL PROGRESS BAR — thin sage indicator pinned to the very top
+   ===================================================================== */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent-bright);
+  box-shadow: 0 0 8px var(--accent-bright);
+  z-index: 100;            /* above the topbar (z-index: 50) */
+  pointer-events: none;
+  transform-origin: 0 50%;
+  will-change: width;
+}
+
+/* =====================================================================
+   TOP BAR
+   ===================================================================== */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: linear-gradient(to bottom, rgba(11, 19, 13, 0.82), rgba(11, 19, 13, 0));
+  backdrop-filter: blur(3px);
+}
+.topbar__mark {
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--text);
+  background: none;
+  font-size: 0.82rem;
+}
+.topbar__mark:hover { color: var(--accent-bright); background: none; }
+.topbar__nav { display: flex; gap: 1.5rem; }
+.topbar__nav a {
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: none;
+}
+.topbar__nav a:hover { color: var(--accent-bright); background: none; }
+
+/* =====================================================================
+   LAYOUT HELPERS
+   ===================================================================== */
+main { position: relative; z-index: 2; }
+
+.section {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 3.25rem 2rem;
+}
+
+/* Section label: ── ⟨ label ⟩ ── */
+.section__label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  color: var(--accent-light);
+  margin-bottom: 1.4rem;
+  opacity: 0.85;
+}
+
+/* =====================================================================
+   SCROLL REVEAL
+   ===================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px) scale(0.98);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 2rem;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.hero__inner { position: relative; z-index: 3; max-width: 720px; }
+
+.hero__prompt {
+  color: var(--faint);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  margin: 0 0 1.5rem;
+}
+
+.hero__title {
+  font-size: clamp(2.6rem, 9vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-shadow: 0 0 40px rgba(92, 200, 138, 0.35);
+}
+
+.hero__sub {
+  font-size: clamp(0.95rem, 2.4vw, 1.25rem);
+  color: var(--accent-light);
+  margin: 1.2rem 0 0.4rem;
+  letter-spacing: 0.08em;
+}
+
+.hero__type {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: var(--muted);
+  margin-top: 1.15rem;
+  min-height: 1.6em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.hero__type-prompt { color: var(--accent); margin-right: 0.5rem; }
+.hero__type-text { color: var(--text); }
+
+/* Blinking block caret (shared) */
+.caret {
+  display: inline-block;
+  color: var(--accent-bright);
+  margin-left: 1px;
+  animation: blink 1.05s steps(2, start) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.hero__foot {
+  margin-top: 1.3rem;
+  color: var(--faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--faint);
+  background: none;
+  text-transform: uppercase;
+}
+.hero__scroll:hover { color: var(--accent-bright); background: none; }
+.hero__scroll-glyph { animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(4px); } }
+
+/* =====================================================================
+   ABOUT
+   ===================================================================== */
+.about-grid {
+  display: block;
+  max-width: 640px;
+}
+.about-text p {
+  color: var(--muted);
+  font-size: 1.02rem;
+  max-width: 46ch;
+}
+.about-stats {
+  margin-top: 1.4rem;
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+.about-stats li { display: flex; gap: 1rem; }
+.about-stats .k { color: var(--faint); width: 70px; }
+.about-stats .v { color: var(--text); }
+.about-stats .ok { color: var(--accent-light); }
+
+/* =====================================================================
+   FEATURE CARD (SophronSwarm)
+   ===================================================================== */
+.feature-card {
+  border: 1px solid var(--border);
+  background: linear-gradient(160deg, rgba(92, 200, 138, 0.07), rgba(15, 28, 20, 0.72));
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  padding: 2.2rem 2.2rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(var(--accent), var(--accent-bright));
+}
+.feature-card__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.badge {
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  color: var(--bg);
+  background: var(--accent-bright);
+  padding: 0.18rem 0.5rem;
+  text-transform: uppercase;
+}
+.feature-card__repo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.feature-card__desc {
+  color: var(--muted);
+  font-size: 1.02rem;
+  max-width: 60ch;
+  margin: 0.4rem 0 1.4rem;
+}
+.feature-card__meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.6rem; }
+.chip {
+  font-size: 0.74rem;
+  color: var(--accent-light);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem;
+  letter-spacing: 0.04em;
+}
+.feature-card__link {
+  font-size: 0.92rem;
+  color: var(--accent-light);
+}
+.feature-card__link .arrow { color: var(--accent-bright); }
+
+/* =====================================================================
+   ROLES
+   ===================================================================== */
+.roles {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--border);
+}
+.roles li {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.5rem;
+  padding: 1.1rem 0.4rem;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+  transition: background 0.3s var(--ease), opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.roles li:hover { background: rgba(92, 200, 138, 0.05); }
+.roles__left { display: flex; flex-direction: column; gap: 0.15rem; }
+.roles__name {
+  color: var(--accent-light);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.roles__link { color: var(--faint); font-size: 0.8rem; }
+.roles__desc { color: var(--muted); font-size: 0.9rem; }
+
+/* =====================================================================
+   STACK
+   ===================================================================== */
+.stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem 3rem;
+}
+.stack__group h3 {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--faint);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chips li {
+  font-size: 0.8rem;
+  color: var(--text);
+  border: 1px solid var(--border);
+  background: rgba(15, 28, 20, 0.4);
+  padding: 0.28rem 0.7rem;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.chips li:hover {
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+
+/* =====================================================================
+   PROJECTS
+   ===================================================================== */
+.projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--border);
+}
+.proj {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 1.5rem;
+  padding: 1.4rem 0.4rem;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+  transition: background 0.3s var(--ease), opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.proj:hover { background: rgba(92, 200, 138, 0.05); }
+.proj__num {
+  color: var(--faint);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+.proj__body h3 { font-size: 1.05rem; color: var(--text); font-weight: 500; }
+.proj__body p { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.88rem; }
+.proj__link { font-size: 0.85rem; color: var(--accent-light); }
+
+/* =====================================================================
+   CONTACT (terminal)
+   ===================================================================== */
+.section--contact { padding-bottom: 2.5rem; }
+.terminal {
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  max-width: 640px;
+  box-shadow: 0 0 40px rgba(92, 200, 138, 0.08);
+}
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.2);
+}
+.terminal__bar .dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--border);
+}
+.terminal__bar .dot:nth-child(1) { background: rgba(154, 240, 189, 0.5); }
+.terminal__title {
+  margin-left: 0.6rem;
+  font-size: 0.72rem;
+  color: var(--faint);
+  letter-spacing: 0.06em;
+}
+.terminal__body { padding: 1.2rem 1.3rem; font-size: 0.9rem; }
+.terminal__body p { margin: 0.3rem 0; }
+.terminal__body .prompt { color: var(--accent); margin-right: 0.5rem; }
+.terminal__body .k { color: var(--muted); }
+.terminal__line a { color: var(--accent-light); }
+.terminal__live { margin-top: 1rem; }
+
+/* =====================================================================
+   FOOTER
+   ===================================================================== */
+.footer {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 2rem 2rem 2.5rem;
+  text-align: center;
+}
+.footer__divider {
+  margin: 0 auto 1.4rem;
+  color: var(--border);
+  font-size: 0.7rem;
+  letter-spacing: 0;
+  overflow: hidden;
+}
+.footer__text {
+  color: var(--faint);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+/* =====================================================================
+   DARK BACKING PLATES — keep text legible over the rotating wireframe
+   while still letting the wireframe show through in the section
+   side-margins and between panels. (Terminal aesthetic: faint blur,
+   hairline border, small radius.)
+   ===================================================================== */
+.hero__inner,
+.about-text,
+.roles,
+.stack__group,
+.projects {
+  background: rgba(11, 19, 13, 0.62);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.1rem 1.4rem;
+}
+
+/* Section label: small inline dark pad so the label reads cleanly. */
+.section__label span {
+  display: inline-block;
+  background: rgba(11, 19, 13, 0.7);
+  border-radius: 3px;
+  padding: 0.15rem 0.55rem;
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+@media (max-width: 860px) {
+  .stack { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .section { padding: 3.25rem 1.3rem; }
+  .hero { padding: 0 1.3rem; }
+  .topbar { padding: 0.8rem 1.2rem; }
+  .topbar__nav { gap: 0.9rem; }
+  .topbar__nav a { font-size: 0.72rem; }
+  .roles li {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  .proj { grid-template-columns: 40px 1fr; }
+  .proj__link { grid-column: 2; }
+  .feature-card { padding: 1.6rem 1.4rem; }
+  .feature-card__repo { font-size: 1.2rem; }
+}
+
+/* =====================================================================
+   REDUCED MOTION — disable heavy animation gracefully
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fx-grain { animation: none; }
+  .hero__scroll-glyph { animation: none; }
+  .caret { animation: none; }
+  #scroll-progress { display: none; }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

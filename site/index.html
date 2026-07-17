@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0b130d" />
+  <meta name="description" content="Eddy Liang (MonsterV82152) — robotics, machine learning, and competitive programming. An art piece in wireframe." />
+  <title>Eddy Liang · MonsterV82152</title>
+
+  <!-- Monospace typeface: system + web fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Three.js ES module map (loaded from CDN, no build step) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.js"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Scroll progress indicator (thin sage bar pinned to the very top) -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       BACKGROUND LAYER: Three.js 3D wireframe canvas (fixed, behind all content)
+       ============================================================ -->
+  <canvas id="wireframe-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       OVERLAYS: scanlines + vignette + CRT grain (pure CSS, decorative)
+       ============================================================ -->
+  <div class="fx-scanlines" aria-hidden="true"></div>
+  <div class="fx-vignette" aria-hidden="true"></div>
+  <div class="fx-grain" aria-hidden="true"></div>
+
+  <!-- Custom cursor halo (subtle, decorative) -->
+  <div id="cursor-halo" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       TOP NAV BAR
+       ============================================================ -->
+  <header class="topbar">
+    <a class="topbar__mark" href="#top">MONSTERV82152</a>
+    <nav class="topbar__nav" aria-label="Primary">
+      <a href="#about">about</a>
+      <a href="#work">work</a>
+      <a href="#stack">stack</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ==========================================================
+         HERO
+         ========================================================== -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero__inner">
+        <p class="hero__prompt reveal">&gt; ./initialize --identity</p>
+
+        <h1 class="hero__title reveal">EDDY LIANG</h1>
+
+        <p class="hero__sub reveal">
+          MonsterV82152 <span class="dim">—</span> Toronto, Canada
+        </p>
+
+        <div class="hero__type reveal">
+          <span class="hero__type-prompt">&gt;</span>
+          <span id="typewriter" class="hero__type-text"></span><span id="cursor" class="caret">█</span>
+        </div>
+
+        <p class="hero__foot reveal">Grade 10 <span class="dim">·</span> Crescent School</p>
+      </div>
+
+      <a href="#about" class="hero__scroll reveal" aria-label="Scroll down">
+        <span>scroll</span>
+        <span class="hero__scroll-glyph">▼</span>
+      </a>
+    </section>
+
+    <!-- ==========================================================
+         ABOUT
+         ========================================================== -->
+    <section id="about" class="section" aria-labelledby="about-label">
+      <h2 class="section__label" id="about-label"><span>── ⟨ about ⟩ ──</span></h2>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            High school student passionate about robotics, machine learning,
+            and competitive programming. Currently involved in multiple technical
+            roles spanning research, competitive robotics &amp; coding, and neural
+            network development.
+          </p>
+          <ul class="about-stats">
+            <li><span class="k">focus</span><span class="v">robotics · ml · code</span></li>
+            <li><span class="k">locale</span><span class="v">toronto, ca</span></li>
+            <li><span class="k">status</span><span class="v ok">// online</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         CURRENT (featured)
+         ========================================================== -->
+    <section id="work" class="section" aria-labelledby="current-label">
+      <h2 class="section__label" id="current-label"><span>── ⟨ current ⟩ ──</span></h2>
+
+      <article class="feature-card reveal">
+        <div class="feature-card__head">
+          <span class="badge">★ featured</span>
+          <span class="feature-card__repo">SophronSwarm</span>
+        </div>
+        <p class="feature-card__desc">
+          A modular, token-optimized, multi-agent CLI for autonomous software
+          engineering at the organization level.
+        </p>
+        <div class="feature-card__meta">
+          <span class="chip">multi-agent</span>
+          <span class="chip">token-optimized</span>
+          <span class="chip">cli</span>
+          <span class="chip">autonomous</span>
+        </div>
+        <a class="feature-card__link" href="https://github.com/MonsterV82152/SophronSwarm"
+           target="_blank" rel="noopener noreferrer">
+          github.com/MonsterV82152/SophronSwarm <span class="arrow">↗</span>
+        </a>
+      </article>
+    </section>
+
+    <!-- ==========================================================
+         ROLES
+         ========================================================== -->
+    <section class="section" aria-labelledby="roles-label">
+      <h2 class="section__label" id="roles-label"><span>── ⟨ roles ⟩ ──</span></h2>
+
+      <ul class="roles reveal">
+        <li>
+          <div class="roles__left">
+            <span class="roles__name">Isonome</span>
+            <span class="roles__link">isonome.dev</span>
+          </div>
+          <span class="roles__desc">Co-Founder: PCR Research · Robotics Research · Agentic Swarm Development (SophronSwarm)</span>
+        </li>
+        <li>
+          <div class="roles__left"><span class="roles__name">Synthica</span></div>
+          <span class="roles__desc">Associate Researcher; focus: Quantum Machine Learning (QML)</span>
+        </li>
+        <li>
+          <div class="roles__left"><span class="roles__name">FRC Team 610</span></div>
+          <span class="roles__desc">Robot Technician (FIRST Robotics Competition, 2025–2026)</span>
+        </li>
+        <li>
+          <div class="roles__left"><span class="roles__name">V5RC Team 16610V</span></div>
+          <span class="roles__desc">Lead Programmer (VEX V5, 2023–2026)</span>
+        </li>
+        <li>
+          <div class="roles__left"><span class="roles__name">V5RC Team 16610M</span></div>
+          <span class="roles__desc">Team Lead (Lead Design + Lead Code, VEX V5, 2026–2027)</span>
+        </li>
+        <li>
+          <div class="roles__left"><span class="roles__name">Neural Network Dev</span></div>
+          <span class="roles__desc">NN Developer · Physical AI Research</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==========================================================
+         STACK
+         ========================================================== -->
+    <section id="stack" class="section" aria-labelledby="stack-label">
+      <h2 class="section__label" id="stack-label"><span>── ⟨ stack ⟩ ──</span></h2>
+
+      <div class="stack reveal">
+        <div class="stack__group">
+          <h3>// languages</h3>
+          <ul class="chips">
+            <li>C++</li><li>C#</li><li>C</li><li>Java</li><li>Python</li>
+            <li>Rust</li><li>JavaScript</li><li>TypeScript</li><li>React.js</li>
+            <li>Node.js</li><li>Dart</li><li>HTML5</li><li>CSS3</li><li>Bash</li>
+          </ul>
+        </div>
+
+        <div class="stack__group">
+          <h3>// tools</h3>
+          <ul class="chips">
+            <li>Node Package Manager</li><li>Git</li><li>VS Code</li>
+            <li>VS Studio</li><li>Linux</li>
+          </ul>
+        </div>
+
+        <div class="stack__group">
+          <h3>// ai agent stack</h3>
+          <ul class="chips">
+            <li>Sophron Swarm</li><li>MCP Implementation</li>
+            <li>1B Token Usage</li><li>modern AI advancements</li>
+          </ul>
+        </div>
+
+        <div class="stack__group">
+          <h3>// miscellaneous</h3>
+          <ul class="chips">
+            <li>CAD · Onshape</li><li>SolidWorks</li><li>Fusion 360</li>
+            <li>CCC</li><li>USACO Silver</li><li>ACSL</li>
+            <li>Neural Networks</li><li>QML</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         PROJECTS
+         ========================================================== -->
+    <section id="projects" class="section" aria-labelledby="projects-label">
+      <h2 class="section__label" id="projects-label"><span>── ⟨ projects ⟩ ──</span></h2>
+
+      <div class="projects reveal">
+        <article class="proj">
+          <span class="proj__num">01</span>
+          <div class="proj__body">
+            <h3>NASA Space Apps Challenge 2024</h3>
+            <p>Exoplanet detection &amp; analysis — global hackathon.</p>
+          </div>
+        </article>
+        <article class="proj">
+          <span class="proj__num">02</span>
+          <div class="proj__body">
+            <h3>FRC 610 Robot Code</h3>
+            <p>Java; advanced control algorithms &amp; sensor integration.</p>
+          </div>
+        </article>
+        <article class="proj">
+          <span class="proj__num">03</span>
+          <div class="proj__body">
+            <h3>V5RC 16610V Robot Code</h3>
+            <p>C++; complex autonomous routines &amp; driver control.</p>
+          </div>
+        </article>
+        <article class="proj">
+          <span class="proj__num">04</span>
+          <div class="proj__body">
+            <h3>Turret System Design</h3>
+            <p>CAD/Java; FRC 610 prototype, advanced kinematics &amp; control.</p>
+          </div>
+        </article>
+        <article class="proj">
+          <span class="proj__num">05</span>
+          <div class="proj__body">
+            <h3>Sophron Swarm</h3>
+            <p>Optimized open-source multi-agent swarm with cost-reducing measures.</p>
+          </div>
+          <a class="proj__link" href="https://github.com/MonsterV82152/SophronSwarm"
+             target="_blank" rel="noopener noreferrer">repo ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         CONTACT
+         ========================================================== -->
+    <section id="contact" class="section section--contact" aria-labelledby="contact-label">
+      <h2 class="section__label" id="contact-label"><span>── ⟨ contact ⟩ ──</span></h2>
+
+      <div class="terminal reveal">
+        <div class="terminal__bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="terminal__title">monsterv82152@toronto: ~</span>
+        </div>
+        <div class="terminal__body">
+          <p><span class="prompt">$</span> cat ./links.txt</p>
+          <p class="terminal__line">
+            <span class="k">github&nbsp;&nbsp;</span>
+            <a href="https://github.com/MonsterV82152" target="_blank" rel="noopener noreferrer">
+              https://github.com/MonsterV82152 ↗
+            </a>
+          </p>
+          <p class="terminal__line">
+            <span class="k">linkedin</span>
+            <a href="https://www.linkedin.com/in/eddy-liang-09893030b/" target="_blank" rel="noopener noreferrer">
+              in/eddy-liang ↗
+            </a>
+          </p>
+          <p class="terminal__live"><span class="prompt">$</span>&nbsp;whoami<span class="caret">█</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         FOOTER
+         ========================================================== -->
+    <footer class="footer">
+      <pre class="footer__divider" aria-hidden="true">┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄</pre>
+      <p class="footer__text">
+        © <span id="year">2026</span> Eddy Liang <span class="dim">·</span> built as an art piece
+      </p>
+    </footer>
+  </main>
+
+  <!-- ============================================================
+       SCRIPTS
+       wireframe.js = ES module (imports three)
+       main.js = classic deferred (works even from file://)
+       ============================================================ -->
+  <script type="module" src="js/wireframe.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>
