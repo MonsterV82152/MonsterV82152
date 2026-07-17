@@ -10,11 +10,25 @@
 ## Who Am I
 High school student passionate about robotics, machine learning, and competitive programming. Currently involved in multiple technical roles spanning research, competitive robotics & coding, and neural network development.
 
+## My Style
+Dark, design-heavy, 3d wireframe animation, minimal color palette
+
+## Current Project
+**SophronSwarm**: A modular, token-optimized, multi-agent CLI for autonomous software engineering at the organization level.
+https://github.com/MonsterV82152/SophronSwarm
+
 ## Roles & Affiliations
+
+### Isonome
+- Co-Founder of Isonome (isonome.dev)
+  - PCR Research
+  - Robotics Research
+  - Agentic Swarm Development (SophronSwarm)
 
 ### Research
 - **Synthica** — Associate Researcher
   - Current focus: Quantum Machine Learning (QML)
+
 
 ### Robotics
 - **FRC Team 610** — Robot Technician
@@ -23,9 +37,15 @@ High school student passionate about robotics, machine learning, and competitive
 - **V5RC Team 16610V** — Lead Programmer
   - VEX V5 Robotics Competition
   - 2023 - 2026
+- **V5RC Team 16610M** — Team Lead
+  - Lead Design
+  - Lead Code
+  - VEX V5 Robotics Competition
+  - 2026 - 2027
 
 ### Development
 - Neural Network (NN) Developer
+- Physical AI Research
 
 ## Skills & Interests
 ### Language Stack
@@ -51,6 +71,11 @@ High school student passionate about robotics, machine learning, and competitive
 - VS Studio
 - Linux
 
+### AI Agent Stack
+- Sophron Swarm + MCP Implementation
+- 1B Token Usage
+- Up-to-date knowledge of modern AI advancements.
+
 ### Miscellanous Skills
 - **CAD Design** - Onshape, SolidWorks, Fusion 360
 - **Competitive Programming** - CCC, USACO (Silver), ACSL
@@ -61,6 +86,7 @@ High school student passionate about robotics, machine learning, and competitive
 - **FRC 610 Robot Code** — Java codebase for FRC Team 610's robot, featuring advanced control algorithms and sensor integration.
 - **V5RC 16610V Robot Code** — C++ codebase for VEX V5 Robotics Competition, implementing complex autonomous routines and driver control schemes.
 - **Turret System Design** — Designed and implemented a prototype turret system for FRC Team 610, utilizing advanced kinematics and control strategies.
+- **Sophron Swarm** - Optimized open-sourced multi-agent swarm platform that implements many cost-reducing measures.
 
 
 ## Contact / Links
